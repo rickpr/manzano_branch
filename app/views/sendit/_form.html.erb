@@ -1,0 +1,8 @@
+<%= bootstrap_form_tag url: '/sendit/doit' do |f| %>
+
+  <%= f.check_box :all %>
+
+  <%= f.select :member, options_from_collection_for_select(Member.all, :id, :name), { label: "Choose members" }, multiple: true %>
+  <%= f.text_area :body %>
+  <%= f.primary%>
+<% end %>

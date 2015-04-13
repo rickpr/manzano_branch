@@ -1,0 +1,15 @@
+<h1>Complete.</h1>
+<table class="table table-striped">
+  <thead>
+    <th>Member Name</th>
+    <th>SMS Status</th>
+  </thead>
+  <tbody>
+  <% @done.each do |member| %>
+    <tr class = "<%= member[:status] == "Success" ? "success" : "danger" %>">
+      <td><%= member[:name] %></td>
+      <td><%= member[:status] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
