@@ -27,6 +27,7 @@ class SenditController < ApplicationController
 
   def member_select
     members = Member.all.select { |member| member.phone }
+    members.uniq! { |member| member.phone }
     return members if params[:all] == "1"
     params[:members].map { |member| Member.find(member) }
   end
