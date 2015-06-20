@@ -1,4 +1,6 @@
 <%= render 'form' %>
+<div id="counter"></div>
 <script>
 $('select').select2();
+$('#body').simplyCountable({ counter: '#counter', maxCount: 160});
 </script>
