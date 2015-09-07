@@ -4,7 +4,7 @@ class SenditController < ApplicationController
   end
 
   def doit
-    params.require :body
+    params.require(:body)
     twilio   = Twilio::REST::Client.new
     @members = member_select
     @done    = []
@@ -13,7 +13,7 @@ class SenditController < ApplicationController
         twilio.messages.create(
           from: OUR_NUMBER,
           to:   member.phone,
-          body: params[:body]
+          body: ERB.new(params[:body]).result(binding)
         )
         @done << { name: member.name, status: "Success" }
       rescue StandardError => error
@@ -29,7 +29,7 @@ class SenditController < ApplicationController
     members = Member.all.select { |member| member.phone }
     members.uniq! { |member| member.phone }
     return members if params[:all] == "1"
-    params[:members].map { |member| Member.find(member) }
+    params[:member].reject(&:empty?).map { |member| Member.find(member) }
   end
 
 end

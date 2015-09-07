@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430023840) do
+ActiveRecord::Schema.define(version: 20150907235521) do
 
   create_table "group_members", force: :cascade do |t|
     t.integer  "member_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150430023840) do
     t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "forbidden"
   end
 
 end
