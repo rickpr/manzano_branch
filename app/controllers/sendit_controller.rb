@@ -26,8 +26,8 @@ class SenditController < ApplicationController
   private
 
   def member_select
-    members = Member.all.select { |member| member.phone }
-    members.uniq! { |member| member.phone }
+    members = Member.all.select { |member| member.phone && !member.forbidden? }
+    members.uniq!(&:phone)
     return members if params[:all] == "1"
     params[:member].reject(&:empty?).map { |member| Member.find(member) }
   end
